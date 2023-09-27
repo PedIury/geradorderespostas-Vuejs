@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Gerador de Respostas Aleatorias</h1>
+        <form @submit.prevent="gerarResposta">
+          <label for= "question">Faça uma pergunta:</label>
+          <input v-model ="pergunta" type="text" id="question" required>
+          <button type ="submit" > Gerar resposta</button>
+        </form>
+        <p v-if="resposta" id="answer">Pergunta: {{ pergunta }} <br> Resposta: {{ resposta }} </p>
+      </div>
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+      <script>
+        new Vue({
+            el: '#app',
+            data: {
+                pergunta: '',
+                resposta: ''
+            },
+            methods: {
+                gerarResposta() {
+                    const respostas = [
+                    'Com certeza',
+                    'É... não tenho certeza!',
+                    'Claro que não',
+                    'Acho difícil',
+                    'Possívelmente não'
+                    ];
+                  const indiceAleatorio = Math.floor(Math.random() * 5);
+                  this.resposta = respostas[indiceAleatorio];
+                }
+            }
+        });
+      </script>
+</body>
+
+</html>
